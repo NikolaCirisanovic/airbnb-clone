@@ -16,5 +16,5 @@ app.get('/', (req, res) => {
 
 
 app.listen(process.env.PORT, () => {
-    console.log("Connected to localhost 3000")
+    console.log(`Connected to localhost ${process.env.PORT}`)
 })
