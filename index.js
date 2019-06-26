@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.sendFile('index.html')
 })
 
-app.get('/api/categories', require('./controllers/properties_get'))
+app.get('/api/properties', require('./controllers/properties_get'))
 
 
 app.listen(process.env.PORT, () => {
