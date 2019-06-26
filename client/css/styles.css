@@ -84,6 +84,11 @@ body {
     margin-left: 20px;
 }
 
+.product, .description, .price, .headline, .rating {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 #headtrav {
     grid-column: span 6;
 }
@@ -105,8 +110,10 @@ body {
 
 .image img {
     background-size: cover;
-    height:200px;
-    width: 280px;
+    height:180px;
+    width: 290px;
+    justify-content: center;
+    padding
 }
 
 .content {
