@@ -12,7 +12,7 @@ window.onload = () => {
             console.log(i)
             divv.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
-                <div class="description"></div>
+                <div class="description">${i.type}</div>
                 <div class="headline">${i.name}</div>
                 <div class="price">Price: ${i.price} $/per night</div>
                 <div class="rating">Rating: ${i.rating} Stars</div>
