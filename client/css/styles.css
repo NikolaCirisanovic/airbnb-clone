@@ -6,8 +6,19 @@ body {
 .topnav {
     overflow: hidden;
     background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 4fr 4fr 3fr;
+    border: 1px solid lightgray
 }
 
+.logo {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.searchbar input {
+    height: 25px;
+    margin-top: 15px;
+}
 .topnav a {
     float: right;
     color: black;
@@ -27,15 +38,79 @@ body {
     color: white;
 }
 
+
+
+
+
 #filterbar {
-    margin-top: 20px;
+    border: solid 1px lightgray;
+    padding: 8px;
 }
 
+
+.button {
+    margin-top: 20px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 14fr;
+    grid-column-gap: 10px;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+
 #filterbar button {
-    margin-left: 30px;
     background: white;
     border: solid 1px gray;
     border-radius: 5px;
     height:30px;
-    width: 90px;  
+    font-size: 12px; 
+} 
+
+.travelworld {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+}
+
+.countrycard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    border: solid 1px lightgray;
+}
+
+.descr {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#headtrav {
+    grid-column: span 6;
+}
+
+.products {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.product {
+    display: grid;
+    grid-template-rows: 11fr 1fr 2fr 1fr 1fr 1fr;
+}
+
+.image {
+    background-image: url('../img/dummy.jpg');
+    background-size: cover;
+}
+
+.content {
+    width: 92%;
+    margin: 0 auto;
+}
+
+#productsheadline {
+    grid-column: span 5;
 }
