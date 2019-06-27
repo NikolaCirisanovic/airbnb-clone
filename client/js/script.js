@@ -1,6 +1,5 @@
 window.onload = () => {
 
-
     // List by cities
 
     axios.get('/api/citieslist').then((res) => {
@@ -27,6 +26,30 @@ window.onload = () => {
         })
     })
 
+    // ::: Show all rooms when visiting page :::
+
+    axios.get('/api/properties').then((res) => {
+        // Target the divs with a class of products
+        divv = document.getElementById("productmain")
+        // Storing the api data as an array in the variable products
+        let products = res.data
+
+        products.forEach(i => {
+            let text = ''
+            let d = 0
+            while (d < i.rating) {
+                text += `<i class="fas fa-star"></i>`
+                d++
+            }
+            divv.insertAdjacentHTML("afterbegin", `<div class="product">
+                <div class="image"> <img src="${i.image}"></img></div>
+                <div class="headline">${i.name}</div>
+                <div class="description">Rooms: ${i.rooms}</div>
+                <div class="price">Price: ${i.price} $/per night</div>
+                <div class="rating">Rating: ${text} Stars</div>
+                </div>`)
+        })
+    })
 
     // ::: Products :::
 
@@ -45,28 +68,28 @@ window.onload = () => {
     }
     
 
-    // axios.get('/api/properties').then((res) => {
-    //     // Target the divs with a class of products
-    //     divv = document.getElementById("productmain")
-    //     // Storing the api data as an array in the variable products
-    //     let products = res.data
+    axios.get('/api/properties').then((res) => {
+        // Target the divs with a class of products
+        divv = document.getElementById("productmain")
+        // Storing the api data as an array in the variable products
+        let products = res.data
 
-    //     products.forEach(i => {
-    //         let text = ''
-    //         let d = 0
-    //         while (d < i.rating) {
-    //             text += `<i class="fas fa-star"></i>`
-    //             d++
-    //         }
-    //         divv.insertAdjacentHTML("afterbegin", `<div class="product">
-    //             <div class="image"> <img src="${i.image}"></img></div>
-    //             <div class="headline">${i.name}</div>
-    //             <div class="description">Rooms: ${i.rooms}</div>
-    //             <div class="price">Price: ${i.price} $/per night</div>
-    //             <div class="rating">Rating: ${text} Stars</div>
-    //             </div>`)
-    //     })
-    // })
+        products.forEach(i => {
+            let text = ''
+            let d = 0
+            while (d < i.rating) {
+                text += `<i class="fas fa-star"></i>`
+                d++
+            }
+            divv.insertAdjacentHTML("afterbegin", `<div class="product">
+                <div class="image"> <img src="${i.image}"></img></div>
+                <div class="headline">${i.name}</div>
+                <div class="description">Rooms: ${i.rooms}</div>
+                <div class="price">Price: ${i.price} $/per night</div>
+                <div class="rating">Rating: ${text} Stars</div>
+                </div>`)
+        })
+    })
 
 
     // :: Eventlistener for click on country ::
@@ -95,4 +118,104 @@ window.onload = () => {
 		}
     })
 
+
+    // :: Eventlistener for click on city ::
+    document.addEventListener('click', (e) => {
+		if (e.target.classList.contains('cities_')) {
+			// get products with selected category id from API
+			axios.get(`/api/properties?city=${e.target.id}`).then((res) => {
+				let products = res.data
+				// target products
+				let products_ui = document.getElementById('productmain')
+				// clear the products
+				products_ui.innerHTML = ''
+				if (res.data.length) {
+					// display each product in the DOM
+					products.forEach((p) => {
+						create_product(products_ui, p)
+					})
+				} else {
+					products_ui.innerHTML = 'Nothing in here'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		}
+    })
+
+    // :: Show apartments with x rooms ::
+
+    document.addEventListener('click', (e) => {
+		if (e.target.classList.contains('roomz')) {
+			// get products with selected category id from API
+			axios.get(`/api/properties?rooms=${e.target.id}`).then((res) => {
+				let products = res.data
+				// target products
+				let products_ui = document.getElementById('productmain')
+				// clear the products
+				products_ui.innerHTML = ''
+				if (res.data.length) {
+					// display each product in the DOM
+					products.forEach((p) => {
+						create_product(products_ui, p)
+					})
+				} else {
+					products_ui.innerHTML = 'Nothing in here'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		}
+    })
+
+    // :: Show apartments with specific roomtype ::
+
+    document.addEventListener('click', (e) => {
+		if (e.target.classList.contains('roomtype')) {
+			// get products with selected category id from API
+			axios.get(`/api/properties?type=${e.target.id}`).then((res) => {
+				let products = res.data
+				// target products
+				let products_ui = document.getElementById('productmain')
+				// clear the products
+				products_ui.innerHTML = ''
+				if (res.data.length) {
+					// display each product in the DOM
+					products.forEach((p) => {
+						create_product(products_ui, p)
+					})
+				} else {
+					products_ui.innerHTML = 'Nothing in here'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		}
+    })
+
+    // :: Reset the filters to no filter ::
+    document.addEventListener('click', (e) => {
+		if (e.target.classList.contains('resetbutton')) {
+			// get products with selected category id from API
+			axios.get(`/api/properties`).then((res) => {
+				console.log('res', res.data)
+				let products = res.data
+				// target products
+				let products_ui = document.getElementById('productmain')
+
+				// clear the products
+				products_ui.innerHTML = ''
+				if (res.data.length) {
+					// display each product in the DOM
+					products.forEach((p) => {
+						create_product(products_ui, p)
+					})
+				} else {
+					products_ui.innerHTML = 'Nothing in here'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		}
+    })
 }
