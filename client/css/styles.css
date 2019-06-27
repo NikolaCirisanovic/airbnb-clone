@@ -89,6 +89,9 @@ body {
     padding-right: 10px;
 }
 
+.headline {
+    font-weight: bold;
+}
 #headtrav {
     grid-column: span 6;
 }

@@ -1,46 +1,7 @@
 window.onload = () => {
 
-    axios.get('/api/properties').then((res) => {
-        // Target the divs with a class of products
-        divv = document.getElementById("productmain")
-        // Storing the api data as an array in the variable products
-        let products = res.data
 
-        products.forEach(i => {
-            let text = ''
-            let d = 0
-            while (d < i.rating) {
-                text += `<i class="fas fa-star"></i>`
-                d++
-            }
-            divv.insertAdjacentHTML("afterbegin", `<div class="product">
-                <div class="image"> <img src="${i.image}"></img></div>
-                <div class="description">${i.type}</div>
-                <div class="headline">${i.name}</div>
-                <div class="price">Price: ${i.price} $/per night</div>
-                <div class="rating">Rating: ${text} Stars</div>
-                </div>`)
-        })
-    }) // List by countries
-
-    axios.get('/api/countrieslist').then((res) => {
-
-        // Target the divs with a class of products
-
-        divv = document.getElementById("displayCountries")
-
-        // Storing the api data as an array in the variable products
-
-        let products = res.data
-        products.forEach((e) => {
-            let display = document.getElementById('displayCountries')
-            display.insertAdjacentHTML('afterbegin', `
-            <button class="category" id="${e.id}">${e.country}</button>
-            `)
-        })
-
-
-    }) // List by cities
+    // List by cities
 
     axios.get('/api/citieslist').then((res) => {
 
@@ -48,98 +9,90 @@ window.onload = () => {
         products.forEach((g) => {
             let display = document.getElementById('displayCities')
             display.insertAdjacentHTML('afterbegin', `
-                <button class="category2" id="${g.id}">${g.city}</button>
+                <button class="cities_" id="${g.id}">${g.city}</button>
                 `)
         })
     })
 
-    // Adding eventlistener for "click"
-    document.addEventListener('click', (e) => {
-        e.preventDefault()
+    // List by countries
 
-        // If the clicked element contains a class of container ....
+    axios.get('/api/countrieslist').then((res) => {
 
-        if (e.target.classList.contains('category')) {
-
-            //... show all the products with the corresponding country
-
-            axios.get(`/api/countrieslistpar/${e.target.id}`).then((res) => {
-
-                // Storing the api data as an array in the variable products
-
-                let products = res.data
-
-                // Target the divs with a class of products
-
-                let products_ui = document.getElementById("productmain")
-
-                // Assign the 
-
-                products_ui.innerHTML = ''
-
-
-                products.forEach(i => {
-                    let text = ''
-                    let d = 0
-                    while (d < i.rating) {
-                        text += `<i class="fas fa-star"></i>`
-                        d++
-                    }
-                    products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
-                <div class="image"> <img src="${i.image}"></img></div>
-                <div class="description">${i.type}</div>
-                <div class="headline">${i.name}</div>
-                <div class="price">Price: ${i.price} $/per night</div>
-                <div class="rating">Rating: ${text} Stars</div>
-                </div>`)
-                })
-
-            })
-        }
+        let products = res.data
+        products.forEach((g) => {
+            let display = document.getElementById('displayCountries')
+            display.insertAdjacentHTML('afterbegin', `
+                <button class="countries_" id="${g.id}">${g.country}</button>
+                `)
+        })
     })
 
-    // Adding eventlistener for "click"
+
+    // ::: Products :::
+
+	const create_product = (tag, p) => {
+		let stars = ''
+		for (i = 0; i < p.rating; i++) {
+			stars += '<i class="fas fa-star"></i>'
+		}
+		tag.insertAdjacentHTML('beforeEnd', `<div class="product">
+        <div class="image"> <img src="${p.image}"></img></div>
+        <div class="headline">${p.name}</div>
+        <div class="description">Rooms: ${p.rooms}</div>
+        <div class="price">Price: ${p.price} $/per night</div>
+        <div class="rating">Rating: ${stars} Stars</div>
+        </div>`)
+    }
+    
+
+    // axios.get('/api/properties').then((res) => {
+    //     // Target the divs with a class of products
+    //     divv = document.getElementById("productmain")
+    //     // Storing the api data as an array in the variable products
+    //     let products = res.data
+
+    //     products.forEach(i => {
+    //         let text = ''
+    //         let d = 0
+    //         while (d < i.rating) {
+    //             text += `<i class="fas fa-star"></i>`
+    //             d++
+    //         }
+    //         divv.insertAdjacentHTML("afterbegin", `<div class="product">
+    //             <div class="image"> <img src="${i.image}"></img></div>
+    //             <div class="headline">${i.name}</div>
+    //             <div class="description">Rooms: ${i.rooms}</div>
+    //             <div class="price">Price: ${i.price} $/per night</div>
+    //             <div class="rating">Rating: ${text} Stars</div>
+    //             </div>`)
+    //     })
+    // })
+
+
+    // :: Eventlistener for click on country ::
     document.addEventListener('click', (e) => {
-        e.preventDefault()
+		if (e.target.classList.contains('countries_')) {
+			// get products with selected category id from API
+			axios.get(`/api/properties?country=${e.target.id}`).then((res) => {
+				console.log('res', res.data)
+				let products = res.data
+				// target products
+				let products_ui = document.getElementById('productmain')
 
-        // If the clicked element contains a class of container ....
-
-        if (e.target.classList.contains('category2')) {
-
-            //... show all the products with the corresponding country
-
-            axios.get(`/api/citieslistpar/${e.target.id}`).then((res) => {
-
-                // Storing the api data as an array in the variable products
-
-                let products = res.data
-
-                // Target the divs with a class of products
-
-                let products_ui = document.getElementById("productmain")
-
-                // Assign the 
-
-                products_ui.innerHTML = ''
-
-
-                products.forEach(i => {
-                    let text = ''
-                    let d = 0
-                    while (d < i.rating) {
-                        text += `<i class="fas fa-star"></i>`
-                        d++
-                    }
-                    products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
-                <div class="image"> <img src="${i.image}"></img></div>
-                <div class="description">${i.type}</div>
-                <div class="headline">${i.name}</div>
-                <div class="price">Price: ${i.price} $/per night</div>
-                <div class="rating">Rating: ${text} Stars</div>
-                </div>`)
-                })
-
-            })
-        }
+				// clear the products
+				products_ui.innerHTML = ''
+				if (res.data.length) {
+					// display each product in the DOM
+					products.forEach((p) => {
+						create_product(products_ui, p)
+					})
+				} else {
+					products_ui.innerHTML = 'Nothing in here'
+				}
+			}).catch((err) => {
+				console.log('err', err)
+			})
+		}
     })
+
 }
