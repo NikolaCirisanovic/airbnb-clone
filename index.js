@@ -16,7 +16,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/properties', require('./controllers/properties_get'))
-
+app.get('/api/countrieslist', require('./controllers/countries_get'))
+app.get('/api/countrieslistpar/:id', require('./controllers/countries_with_paramID_get'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Connected to localhost ${process.env.PORT}`)

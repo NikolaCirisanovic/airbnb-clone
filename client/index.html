@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script src="js/axios.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ded264d074.js"></script>
 </head>
 
 <body>
@@ -38,62 +39,14 @@
                 <button>Rooms</button>
                 <button>Price</button>
                 <button>Type</button>
-                <Button>Plus</Button>
+                <Button>Plus <i class="fas fa-star"></i></Button>
             </div>
             <div class="filterholder"></div>
         </div>
         <div class="content">
-            <!-- <div class="travelworld">
-                <h2 id="headtrav">Travel the world with Groundbnb</h2>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="    ">
-                        <span>Montreal <br>
-                            <small>Canada</small>
-                        </span>
-                    </div>
-                </div>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="descr">
-                        <span>Sidney <br>
-                            <small>Australia</small>
-                        </span>
-                    </div>
-                </div>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="descr">
-                        <span>New York <br>
-                            <small>USA</small>
-                        </span>
-                    </div>
-                </div>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="descr">
-                        <span>Hamburg <br>
-                            <small>Germany</small>
-                        </span>
-                    </div>
-                </div>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="descr">
-                        <span>Barcelona <br>
-                            <small>Spain</small>
-                        </span>
-                    </div>
-                </div>
-                <div class="countrycard">
-                    <div class="buttonpicture"> <img src="/img/140x100.png" alt=""></div>
-                    <div class="descr">
-                        <span>Rio de Janeiro <br>
-                            <small>Brazil</small>
-                        </span>
-                    </div>
-                </div>
-            </div> -->
+            <div class="countrydisplaylist">
+                <ul id="displayCountries"></ul>
+            </div>
             <div id="productmain">
             </div>
             <div class="standards">
@@ -122,4 +75,13 @@
     </div>
 </body>
 
+<script>
+
+let score = 5
+for (i = 0; i <= score; i++) { 
+      console.log(i)
+    }
+</script>
+
 </html>
+
