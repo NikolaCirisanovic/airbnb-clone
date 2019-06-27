@@ -79,7 +79,7 @@ window.onload = () => {
                         text += `<i class="fas fa-star"></i>`
                         d++
                     }
-                    divv.insertAdjacentHTML("afterbegin", `<div class="product">
+                products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
                 <div class="description">${i.type}</div>
                 <div class="headline">${i.name}</div>
@@ -124,7 +124,7 @@ window.onload = () => {
                         text += `<i class="fas fa-star"></i>`
                         d++
                     }
-                    divv.insertAdjacentHTML("afterbegin", `<div class="product">
+                products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
                 <div class="description">${i.type}</div>
                 <div class="headline">${i.name}</div>
