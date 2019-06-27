@@ -22,10 +22,15 @@ window.onload = () => {
                 </div>`)
         })
     }) // List by countries
+
     axios.get('/api/countrieslist').then((res) => {
+
         // Target the divs with a class of products
+
         divv = document.getElementById("displayCountries")
+
         // Storing the api data as an array in the variable products
+
         let products = res.data
         products.forEach((e) => {
             let display = document.getElementById('displayCountries')
@@ -33,19 +38,20 @@ window.onload = () => {
             <button class="category" id="${e.id}">${e.country}</button>
             `)
         })
+
+
     }) // List by cities
+
     axios.get('/api/citieslist').then((res) => {
-        // Target the divs with a class of products
-        // divv = document.getElementById("displayCities")
-        // Storing the api data as an array in the variable products
+
         let products = res.data
         products.forEach((g) => {
             let display = document.getElementById('displayCities')
             display.insertAdjacentHTML('afterbegin', `
-            <button class="category" id="${g.id}">${g.city}</button>
-            `)
+                <button class="category2" id="${g.id}">${g.city}</button>
+                `)
         })
-    }) 
+    })
 
     // Adding eventlistener for "click"
     document.addEventListener('click', (e) => {
@@ -79,7 +85,7 @@ window.onload = () => {
                         text += `<i class="fas fa-star"></i>`
                         d++
                     }
-                products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
+                    products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
                 <div class="description">${i.type}</div>
                 <div class="headline">${i.name}</div>
@@ -98,7 +104,7 @@ window.onload = () => {
 
         // If the clicked element contains a class of container ....
 
-        if (e.target.classList.contains('category')) {
+        if (e.target.classList.contains('category2')) {
 
             //... show all the products with the corresponding country
 
@@ -124,7 +130,7 @@ window.onload = () => {
                         text += `<i class="fas fa-star"></i>`
                         d++
                     }
-                products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
+                    products_ui.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
                 <div class="description">${i.type}</div>
                 <div class="headline">${i.name}</div>
