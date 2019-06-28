@@ -44,7 +44,7 @@ window.onload = () => {
             divv.insertAdjacentHTML("afterbegin", `<div class="product">
                 <div class="image"> <img src="${i.image}"></img></div>
                 <div class="headline">${i.name}</div>
-                <div class="description">Rooms: ${i.rooms}</div>
+                <div class="description"><p>Rooms: ${i.rooms} ${i.roomtype}</div>
                 <div class="price">Price: ${i.price} $/per night</div>
                 <div class="rating">Rating: ${text} Stars</div>
                 </div>`)
@@ -97,7 +97,8 @@ window.onload = () => {
 		if (e.target.classList.contains('countries_')) {
 			// get products with selected category id from API
 			axios.get(`/api/properties?country=${e.target.id}`).then((res) => {
-				console.log('res', res.data)
+                console.log('res', res.data)
+                
 				let products = res.data
 				// target products
 				let products_ui = document.getElementById('productmain')
